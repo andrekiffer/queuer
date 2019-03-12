@@ -1,0 +1,31 @@
+{
+    "name": "andrekiffer/queuer",
+    "description": "Distributed Task Queue for PHP Projects",
+    "type": "library",
+    "require": {
+        "symfony/console": "@stable",
+        "aws/aws-sdk-php": "@stable",
+        "zendframework/zend-config": "@stable",
+        "monolog/monolog": "@stable",
+        "ruflin/elastica": "@stable",
+        "predis/predis": "@stable",
+        "react/child-process": "^0.5.0",
+        "react/event-loop": "^0.4.3",
+        "symfony/yaml": "@stable",
+        "bugsnag/bugsnag": "^3.0",
+        "bugsnag/bugsnag-psr-logger": "^1.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Queuer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "André Kiffer",
+            "email": "andre@codecrafts.com.br"
+        }
+    ],
+    "bin": ["bin/queuer"]
+}

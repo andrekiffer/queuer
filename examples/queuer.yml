@@ -1,0 +1,27 @@
+queuer:
+  app-console: $(pwd)/bin/queuer
+  topic-list-refresh: 60
+  max-queue-processes: 1
+  max-processes:
+    sandbox-portal-transportchain-invoices: 8
+
+queue:
+  type: sqs
+  prefix-topic: sandbox-invoices
+  prefix-exclude: "dead-queue"
+  config:
+    version: "latest"
+    region: "sa-east-1"
+    key: 123
+    secret: abc123
+
+logger:
+  type: elk
+  config:
+    channel: queuer-portal
+    host: elk.host
+    port: 443
+    transport: Https
+    aws_access_key_id:
+    aws_secret_access_key:
+    aws_region:

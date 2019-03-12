@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use Queuer\Cli\Test;
+use Queuer\Cli\Serve;
+use Queuer\Cli\RecoverDeadQueue;
+
+call_user_func(function () {
+
+    chdir(__DIR__);
+
+    $autoload = array_filter(
+        [
+            __DIR__ . '/../../../autoload.php',
+            __DIR__ . '/../../autoload.php',
+            __DIR__ . '/../vendor/autoload.php',
+            __DIR__ . '/vendor/autoload.php'
+        ],
+        'is_file'
+    );
+
+    if (! count($autoload)) {
+        fwrite(
+            STDERR,
+            'You need to set up the project dependencies using the following commands:' . PHP_EOL .
+            'wget http://getcomposer.org/composer.phar' . PHP_EOL .
+            'php composer.phar install' . PHP_EOL
+        );
+        die(1);
+    }
+
+    require reset($autoload);
+
+    $application = new Application();
+    $application->add(new Test);
+    $application->add(new Serve);
+    $application->add(new RecoverDeadQueue);
+    $application->run();
+});
