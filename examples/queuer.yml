@@ -3,7 +3,7 @@ queuer:
   topic-list-refresh: 60
   max-queue-processes: 1
   max-processes:
-    sandbox-portal-transportchain-invoices: 8
+    sandbox-invoices: 8
 
 queue:
   type: sqs
